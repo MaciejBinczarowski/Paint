@@ -37,9 +37,13 @@
 
 <Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#onClickPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
    <children>
-      <Button fx:id="editButton" focusTraversable="false" layoutY="1.0" mnemonicParsing="false" onAction="#onClickEditButton" prefHeight="27.0" prefWidth="81.0" text="Edit" />
-      <Button fx:id="circleButton" focusTraversable="false" layoutX="339.0" layoutY="1.0" mnemonicParsing="false" onAction="#onClickCircleButton" prefHeight="27.0" prefWidth="102.0" text="Circle" />
-      <Button fx:id="rectangleButton" focusTraversable="false" layoutX="219.0" layoutY="1.0" mnemonicParsing="false" onAction="#onClickRectangleButton" prefHeight="27.0" prefWidth="102.0" text="Rectangle" />
-      <Button fx:id="polygonButton" focusTraversable="false" layoutX="94.0" layoutY="1.0" mnemonicParsing="false" onAction="#onClickPolygonButton" prefHeight="27.0" prefWidth="102.0" text="Polygon" />
+      <Pane fx:id="buttonPane" layoutX="-3.0" layoutY="-2.0" prefHeight="28.0" prefWidth="600.0">
+         <children>
+            <Button fx:id="circleButton" focusTraversable="false" mnemonicParsing="false" onAction="#onClickCircleButton" prefHeight="27.0" prefWidth="102.0" text="Circle" />
+            <Button fx:id="editButton" focusTraversable="false" layoutX="512.0" layoutY="1.0" mnemonicParsing="false" onAction="#onClickEditButton" prefHeight="27.0" prefWidth="81.0" text="Edit" />
+            <Button fx:id="rectangleButton" focusTraversable="false" layoutX="376.0" layoutY="1.0" mnemonicParsing="false" onAction="#onClickRectangleButton" prefHeight="27.0" prefWidth="102.0" text="Rectangle" />
+            <Button fx:id="polygonButton" focusTraversable="false" layoutX="182.0" layoutY="1.0" mnemonicParsing="false" onAction="#onClickPolygonButton" prefHeight="27.0" prefWidth="102.0" text="Polygon" />
+         </children>
+      </Pane>
    </children>
 </Pane>

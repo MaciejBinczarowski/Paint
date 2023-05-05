@@ -24,7 +24,7 @@ public class App extends Application
             put("rectangle", new MyRectangleBuilder());
             put("polygon", new MyPolygonBuilder());
         }};
-    public static String selectedOption;
+    private static String selectedOption;
     public static void main(String[] args) throws Exception 
     {
         MyLogger.loggerConfig();
@@ -73,4 +73,13 @@ public class App extends Application
         }
     }
 
+    public static String getSelectedOption()
+    {
+        return selectedOption;
+    }
+
+    public static void setSelectedOption(String option)
+    {
+        selectedOption = option;
+    }
 }

@@ -13,8 +13,6 @@ import javafx.scene.shape.Circle;
 
 public class Controller 
 {
-    private String selectedFigure;
-
     @FXML
     private Button circleButton;  
     
@@ -26,26 +24,29 @@ public class Controller
 
     @FXML
     private Pane pane;
+
+    @FXML
+    private Pane buttonPane;
     
     public void onClickCircleButton(Event e)
     {
         MyLogger.logger.log(Level.INFO, "Circle button pressed");
         MyPointer.clearPoints();
-        App.selectedOption = "circle";
+        App.setSelectedOption("circle");
     }
 
     public void onClickRectangleButton(Event e)
     {
         MyLogger.logger.log(Level.INFO, "Rectangle button pressed");
         MyPointer.clearPoints();
-        App.selectedOption = "rectangle";
+        App.setSelectedOption("rectangle");
     }
 
     public void onClickPolygonButton(Event e)
     {
         MyLogger.logger.log(Level.INFO, "Polygon button pressed");
         MyPointer.clearPoints();
-        App.selectedOption = "polygon";
+        App.setSelectedOption("polygon");
         
     }
 
@@ -53,19 +54,19 @@ public class Controller
     {
         MyLogger.logger.log(Level.INFO, "Edit button pressed");
         MyPointer.clearPoints();
-        App.selectedOption = "edit";
+        App.setSelectedOption("edit");
         App.enableEdit();
     }
 
     public void onClickPane(MouseEvent e)
     {
-        if (App.selectedOption == null || App.selectedOption.equals("edit"))
+        if (App.getSelectedOption() == null || App.getSelectedOption().equals("edit"))
         {
             MyLogger.logger.log(Level.INFO, "Nothing selected!");
             return;
         }
 
-        if (App.selectedOption.equals("edit"))
+        if (App.getSelectedOption().equals("edit"))
         {
             return;
         }

@@ -27,7 +27,7 @@ public abstract class MyShape implements IShapeAction
     @Override
     public void rotate(double deltaAngle) 
     {
-        shape.setRotate(shape.getRotate() + deltaAngle);
+        shape.setRotate(shape.getRotate() + deltaAngle * 0.1);
     }
 
     @Override
