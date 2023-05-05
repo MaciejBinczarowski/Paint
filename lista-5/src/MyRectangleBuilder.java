@@ -4,8 +4,13 @@ import java.util.ArrayList;
 public class MyRectangleBuilder extends MyShapeBuilder 
 {
     @Override
-    public MyShape BuildMyShape(ArrayList<Double> pointsX, ArrayList<Double> pointsY) 
+    public MyShape buildMyShape(ArrayList<Double> pointsX, ArrayList<Double> pointsY) 
     {
+        if (MyPointer.getSize() != 2)
+        {
+            return null;
+        }
+
         double upperLeftX = pointsX.get(0);
         double upperLeftY = pointsY.get(0);
         double width = pointsX.get(1) - upperLeftX;

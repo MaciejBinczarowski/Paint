@@ -1,3 +1,5 @@
+import java.util.logging.Level;
+
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Shape;
 import javafx.scene.transform.Rotate;
@@ -11,19 +13,21 @@ public abstract class MyShape implements IShapeAction
     {
         this.shape = shape;
         this.name = name;
+
+        //Definitly change it idioto jebany
     }
 
     @Override
-    public void scale(double deltaSize) 
+    public void scale(double deltaY) 
     {
-        shape.setScaleX(shape.getScaleX() * deltaSize);
-        shape.setScaleY(shape.getScaleY() * deltaSize);
+        shape.setScaleX(shape.getScaleX() + deltaY * 0.001);
+        shape.setScaleY(shape.getScaleY() + deltaY * 0.001);
     }
 
     @Override
     public void rotate(double deltaAngle) 
     {
-        
+        shape.setRotate(shape.getRotate() + deltaAngle);
     }
 
     @Override
@@ -36,4 +40,10 @@ public abstract class MyShape implements IShapeAction
     {
         return shape;
     }
+
+    public String getName() 
+    {
+        return name;
+    }
+
 }

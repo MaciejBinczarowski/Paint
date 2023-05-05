@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.EventListener;
 import java.util.HashMap;
+import java.util.logging.Level;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -16,11 +17,14 @@ import javafx.stage.Stage;
 
 public class App extends Application
 {
-    private HashMap<String, FigureBuilder> figureBuildersMap = new HashMap<String, FigureBuilder>()
-    {{
-        put("circle", new CircleBuilder());
-    }};
-
+    final private static ArrayList<MyShape> shapes = new ArrayList<MyShape>();
+    final private static HashMap<String, MyShapeBuilder> myShapeBuildersMap = new HashMap<String, MyShapeBuilder>()
+        {{
+            put("circle", new MyCircleBuilder());
+            put("rectangle", new MyRectangleBuilder());
+            put("polygon", new MyPolygonBuilder());
+        }};
+    public static String selectedOption;
     public static void main(String[] args) throws Exception 
     {
         MyLogger.loggerConfig();
@@ -30,28 +34,7 @@ public class App extends Application
     @Override
     public void start(Stage stage) throws Exception 
     {
-        ArrayList<Double> pointsX = new ArrayList<Double>();
-        pointsX.add(300.0);
-        pointsX.add(400.0);
-
-        ArrayList<Double> pointsY = new ArrayList<Double>();
-        pointsY.add(300.0);
-        pointsY.add(400.0);
-
-        HashMap<String, MyShapeBuilder> myShapeBuildersMap = new HashMap<String, MyShapeBuilder>()
-        {{
-            put("circle", new MyCircleBuilder());
-            put("rectangle", new MyRectangleBuilder());
-        }};
-
-        MyShape circle1 = myShapeBuildersMap.get("circle").BuildMyShape(pointsX, pointsY);
-        MyShape rectangle1 = myShapeBuildersMap.get("rectangle").BuildMyShape(pointsX, pointsY);
-
         Pane root = FXMLLoader.load(getClass().getResource("Main.fxml"));
-        root.getChildren().add(new Pane(circle1.getShape()));
-        root.getChildren().add(new Pane(rectangle1.getShape()));
-        rectangle1.scale(2);
-        rectangle1.changeColor(Color.DARKGREEN);
 
         Scene scene = new Scene(root);
 
@@ -60,5 +43,34 @@ public class App extends Application
         stage.show();
     }
 
+    public static void createShapeFromPoints(Pane pane)
+    {
+        for (MyShape myShape : shapes) 
+        {
+            myShape.getShape().setDisable(true);
+        }
+
+        MyShape shape = myShapeBuildersMap.get(selectedOption).buildMyShape(MyPointer.getPointsX(), MyPointer.getPointsY());
+        
+        if (shape == null)
+        {
+            return;
+        }
+
+        MyShapeController.setEventHandlers(shape);
+        shape.getShape().setDisable(true);
+        shapes.add(shape);
+
+        pane.getChildren().add(shape.getShape());
+        MyPointer.clearPoints();
+    }
+
+    public static void enableEdit()
+    {
+        for (MyShape myShape : shapes) 
+        {
+            myShape.getShape().setDisable(false);
+        }
+    }
 
 }

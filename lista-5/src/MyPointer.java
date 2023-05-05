@@ -29,4 +29,11 @@ public class MyPointer
         pointsX.clear();
         pointsY.clear();
     }
+
+    public static int getSize()
+    {
+        int size = pointsX.size();
+        MyLogger.logger.log(Level.INFO, "Size is " + size);
+        return size;
+    }
 }

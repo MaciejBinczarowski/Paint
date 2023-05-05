@@ -3,8 +3,13 @@ import java.util.ArrayList;
 public class MyCircleBuilder extends MyShapeBuilder
 {
     @Override
-    public MyShape BuildMyShape(ArrayList<Double> pointsX, ArrayList<Double> pointsY) 
+    public MyShape buildMyShape(ArrayList<Double> pointsX, ArrayList<Double> pointsY) 
     {
+        if (MyPointer.getSize() != 2)
+        {
+            return null;
+        }
+
         double x1 = pointsX.get(0);
         double x2 = pointsX.get(1);
         double y1 = pointsY.get(0);

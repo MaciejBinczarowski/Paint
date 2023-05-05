@@ -33,18 +33,13 @@
 -->
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.Pane?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
-  <children>
-      <AnchorPane fx:id="anchorPane" onMouseClicked="#onClickAnchorPane" prefHeight="404.0" prefWidth="640.0">
-         <children>
-            <Button layoutX="28.0" layoutY="1.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="102.0" text="Info" />
-            <Button fx:id="circleButton" layoutX="454.0" layoutY="1.0" mnemonicParsing="false" onAction="#onClickCircleButton" prefHeight="27.0" prefWidth="102.0" text="Circle" />
-            <Button fx:id="rectangleButton" layoutX="270.0" layoutY="1.0" mnemonicParsing="false" onAction="#onClickRectangleButton" prefHeight="27.0" prefWidth="102.0" text="Rectangle" />
-            <Button fx:id="polygonButton" layoutX="154.0" layoutY="1.0" mnemonicParsing="false" onAction="#onClickPolygonButton" prefHeight="27.0" prefWidth="102.0" text="Polygon" />
-         </children>
-      </AnchorPane>
-  </children>
-</VBox>
+<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#onClickPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
+   <children>
+      <Button fx:id="editButton" focusTraversable="false" layoutY="1.0" mnemonicParsing="false" onAction="#onClickEditButton" prefHeight="27.0" prefWidth="81.0" text="Edit" />
+      <Button fx:id="circleButton" focusTraversable="false" layoutX="339.0" layoutY="1.0" mnemonicParsing="false" onAction="#onClickCircleButton" prefHeight="27.0" prefWidth="102.0" text="Circle" />
+      <Button fx:id="rectangleButton" focusTraversable="false" layoutX="219.0" layoutY="1.0" mnemonicParsing="false" onAction="#onClickRectangleButton" prefHeight="27.0" prefWidth="102.0" text="Rectangle" />
+      <Button fx:id="polygonButton" focusTraversable="false" layoutX="94.0" layoutY="1.0" mnemonicParsing="false" onAction="#onClickPolygonButton" prefHeight="27.0" prefWidth="102.0" text="Polygon" />
+   </children>
+</Pane>
