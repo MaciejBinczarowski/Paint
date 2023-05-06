@@ -5,11 +5,15 @@ import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.MenuBar;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Rectangle;
 
 public class Controller 
 {
@@ -26,23 +30,33 @@ public class Controller
     private Pane pane;
 
     @FXML
-    private Pane buttonPane;
+    private MenuBar menuBar;
+
+    @FXML
+    private HBox buttonPane;
     
-    public void onClickCircleButton(Event e)
+    @FXML
+    private void onClickCircleButton(Event e)
     {
+
+        // tutaj zacznij bo to tutaj nie może zostać
+        // durniu
+        
         MyLogger.logger.log(Level.INFO, "Circle button pressed");
         MyPointer.clearPoints();
         App.setSelectedOption("circle");
     }
 
-    public void onClickRectangleButton(Event e)
+    @FXML
+    private void onClickRectangleButton(Event e)
     {
         MyLogger.logger.log(Level.INFO, "Rectangle button pressed");
         MyPointer.clearPoints();
         App.setSelectedOption("rectangle");
     }
 
-    public void onClickPolygonButton(Event e)
+    @FXML
+    private void onClickPolygonButton(Event e)
     {
         MyLogger.logger.log(Level.INFO, "Polygon button pressed");
         MyPointer.clearPoints();
@@ -50,7 +64,8 @@ public class Controller
         
     }
 
-    public void onClickEditButton(Event event)
+    @FXML
+    private void onClickEditButton(Event event)
     {
         MyLogger.logger.log(Level.INFO, "Edit button pressed");
         MyPointer.clearPoints();
@@ -58,7 +73,8 @@ public class Controller
         App.enableEdit();
     }
 
-    public void onClickPane(MouseEvent e)
+    @FXML
+    private void onClickPane(MouseEvent e)
     {
         if (App.getSelectedOption() == null || App.getSelectedOption().equals("edit"))
         {
@@ -74,5 +90,18 @@ public class Controller
         MyPointer.addPoint(e.getX(), e.getY());
         // pane.getChildren().add(new Circle(e.getX(), e.getY(), 2)); // jak starczy czasu to sie tym zajmij
         App.createShapeFromPoints(pane);
+    }
+
+    public void setProperties()
+    {
+        menuBar.prefWidthProperty().bind(pane.widthProperty());
+        // Rectangle clip = new Rectangle(0, 0, menuBar.getPrefWidth(), menuBar.getPrefHeight());
+        // clip.widthProperty().bind(menuBar.prefWidthProperty());
+
+        // pane.setClip(clip);
+        MyLogger.logger.log(Level.INFO, "Created clip");
+        
+
+        buttonPane.prefWidthProperty().bind(pane.widthProperty());
     }
 }

@@ -24,6 +24,7 @@ public class App extends Application
             put("rectangle", new MyRectangleBuilder());
             put("polygon", new MyPolygonBuilder());
         }};
+    private static Controller appController;
     private static String selectedOption;
     public static void main(String[] args) throws Exception 
     {
@@ -34,7 +35,11 @@ public class App extends Application
     @Override
     public void start(Stage stage) throws Exception 
     {
-        Pane root = FXMLLoader.load(getClass().getResource("Main.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Main.fxml"));
+        Pane root = fxmlLoader.load();
+
+        appController = fxmlLoader.getController();
+        appController.setProperties();
 
         Scene scene = new Scene(root);
 
