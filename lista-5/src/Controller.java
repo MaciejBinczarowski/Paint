@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.logging.Level;
 
 import javafx.event.Event;
@@ -27,13 +28,16 @@ public class Controller
     private Button polygonButton;
 
     @FXML
-    private Pane pane;
+    private Pane backgroundPane;
 
     @FXML
     private MenuBar menuBar;
 
     @FXML
     private HBox buttonPane;
+
+    @FXML
+    private Pane drawningPane;
     
     @FXML
     private void onClickCircleButton(Event e)
@@ -88,20 +92,26 @@ public class Controller
         }
 
         MyPointer.addPoint(e.getX(), e.getY());
-        // pane.getChildren().add(new Circle(e.getX(), e.getY(), 2)); // jak starczy czasu to sie tym zajmij
-        App.createShapeFromPoints(pane);
+        // backgroundPane.getChildren().add(new Circle(e.getX(), e.getY(), 2)); // jak starczy czasu to sie tym zajmij
+        App.createShapeFromPoints(drawningPane);
+    }
+
+    public static void serialize(ArrayList<MyShape> shapes)
+    {
+        DataSerializer.serializeData(shapes);
     }
 
     public void setProperties()
     {
-        menuBar.prefWidthProperty().bind(pane.widthProperty());
-        // Rectangle clip = new Rectangle(0, 0, menuBar.getPrefWidth(), menuBar.getPrefHeight());
-        // clip.widthProperty().bind(menuBar.prefWidthProperty());
+        menuBar.prefWidthProperty().bind(backgroundPane.widthProperty());
+        Rectangle clip = new Rectangle(0, 0, backgroundPane.getPrefWidth() + 5, backgroundPane.getPrefHeight());
+        clip.widthProperty().bind(backgroundPane.widthProperty());
+        clip.heightProperty().bind(backgroundPane.heightProperty());
 
-        // pane.setClip(clip);
+        drawningPane.setClip(clip);
         MyLogger.logger.log(Level.INFO, "Created clip");
         
 
-        buttonPane.prefWidthProperty().bind(pane.widthProperty());
+        buttonPane.prefWidthProperty().bind(backgroundPane.widthProperty());
     }
 }

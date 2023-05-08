@@ -40,7 +40,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#onClickPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
+<Pane fx:id="backgroundPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#onClickPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
    <children>
       <MenuBar fx:id="menuBar" layoutY="-3.0" prefHeight="28.0" prefWidth="600.0">
          <menus>
@@ -73,5 +73,6 @@
             <Button fx:id="editButton" focusTraversable="false" mnemonicParsing="false" onAction="#onClickEditButton" prefHeight="27.0" prefWidth="81.0" text="Edit" />
          </children>
       </HBox>
+      <Pane fx:id="drawningPane" layoutX="-2.0" layoutY="53.0" prefHeight="349.0" prefWidth="607.0" />
    </children>
 </Pane>

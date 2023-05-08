@@ -65,6 +65,8 @@ public class App extends Application
         MyShapeController.setEventHandlers(shape);
         shape.getShape().setDisable(true);
         shapes.add(shape);
+        // pane.getChildren().remove(shapes);
+        appController.serialize(shapes);
 
         pane.getChildren().add(shape.getShape());
         MyPointer.clearPoints();

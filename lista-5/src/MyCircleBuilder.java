@@ -16,7 +16,10 @@ public class MyCircleBuilder extends MyShapeBuilder
         double y2 = pointsY.get(1);
         double radius = calculateRadius(x1, x2, y1, y2);
 
-        return new MyCircle(radius, x1, y1);
+        MyCircle myCircle = new MyCircle(radius, x1, y1);
+        myCircle.setStartingPoints(pointsX, pointsY);
+
+        return myCircle;
     }
 
     private double calculateRadius(double x1, double x2, double y1, double y2)

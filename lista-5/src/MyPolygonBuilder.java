@@ -13,8 +13,10 @@ public class MyPolygonBuilder extends MyShapeBuilder
         }
 
         double[] points = preparePoints(pointsX, pointsY);
+        MyPolygon myPolygon = new MyPolygon(points);
+        myPolygon.setStartingPoints(pointsX, pointsY);
 
-        return new MyPolygon(points);
+        return myPolygon;
     }
 
     private double[] preparePoints(ArrayList<Double> pointsX, ArrayList<Double> pointsY)

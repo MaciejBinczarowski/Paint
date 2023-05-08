@@ -38,7 +38,10 @@ public class MyRectangleBuilder extends MyShapeBuilder
             height = Math.abs(height);
         }
 
-        return new MyRectangle(upperLeftX, upperLeftY, width, height);
+        MyRectangle myRectangle = new MyRectangle(upperLeftX, upperLeftY, width, height);
+        myRectangle.setStartingPoints(pointsX, pointsY);
+
+        return myRectangle;
     }
 
 }

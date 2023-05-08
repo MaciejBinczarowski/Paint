@@ -1,13 +1,16 @@
+import java.util.ArrayList;
 import java.util.logging.Level;
 
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Shape;
 import javafx.scene.transform.Rotate;
 
-public abstract class MyShape implements IShapeAction
+public abstract class MyShape implements IShapeAction, java.io.Serializable
 {
     final protected Shape shape;
     final protected String name;
+    protected ArrayList<Double> startingPointsX;
+    protected ArrayList<Double> startingPointsY;
 
     MyShape(Shape shape, String name)
     {
@@ -46,4 +49,25 @@ public abstract class MyShape implements IShapeAction
         return name;
     }
 
+    //Weż ty przemyśl swoje zachowanie i zmień to
+    // zmądrzałem, przeciąż metody w MyShapeBuilder
+    //200 IQ
+    //
+    // w sumie to nie wiem co miałem na myśli xd
+
+    public void setStartingPoints(ArrayList<Double> startingPointsX, ArrayList<Double> startingPointsY)
+    {
+        this.startingPointsX = startingPointsX;
+        this.startingPointsY = startingPointsY;
+    }
+
+    public ArrayList<Double> getStartingPointsX()
+    {
+        return this.startingPointsX;
+    }
+
+    public ArrayList<Double> getStartingPointsY()
+    {
+        return this.startingPointsY;
+    }
 }
