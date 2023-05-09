@@ -12,7 +12,7 @@ public class MyRectangle extends MyShape
     // Constructor that create rectangle with required cordinates and measurement and give it to parent abstract class MyShape
     MyRectangle(double upperLeftX, double upperLeftY, double width, double height)
     {
-        super(new Rectangle(upperLeftX, upperLeftY, width, height), "Rectangle");
+        super(new Rectangle(upperLeftX, upperLeftY, width, height), "rectangle");
         this.upperLeftX = upperLeftX;
         this.upperLeftY = upperLeftY;
         this.width = width;
@@ -23,7 +23,8 @@ public class MyRectangle extends MyShape
     @Override
     public void move(double x, double y) 
     {
-        
+        // x = x - shape.getLayoutBounds().getMinX() - 50;
+        // x = x < -190 ? -190 : x;
         MyLogger.logger.log(Level.INFO, "Circle moved");
         shape.setLayoutX(x - shape.getLayoutBounds().getMinX() - 50);
         shape.setLayoutY(y - shape.getLayoutBounds().getMinY() - 50);

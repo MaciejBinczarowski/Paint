@@ -1,9 +1,12 @@
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.logging.Level;
 
 public class DataSerializer
@@ -11,41 +14,77 @@ public class DataSerializer
     public static void serializeData(ArrayList<MyShape> shapes)
     {  
         String filename = "file.ser";
+        ArrayList<HashMap> objectsArray = new ArrayList<HashMap>(); 
          
         // Serialization
         for (MyShape myShape : shapes) 
         {
+            objectsArray.add(DataMenager.prepareShapeProperties(myShape));
+        }
+
+        try
+        {  
+            MyLogger.logger.log(Level.INFO, "Trying to open file");
+            //Saving of object in a file
+            FileOutputStream file = new FileOutputStream(new File(filename));
+            ObjectOutputStream out = new ObjectOutputStream(file);
             
-            try
-            {  
-                MyLogger.logger.log(Level.INFO, "Trying to open file");
-                //Saving of object in a file
-                FileOutputStream file = new FileOutputStream(new File(filename));
-                ObjectOutputStream out = new ObjectOutputStream(file);
-                
-                MyLogger.logger.log(Level.INFO, "File opened");
-                // Method for serialization of object
-                // DataMenager.prepareData(myShape);
-                Field[] fields = (new DataMenager(myShape)).getClass().getDeclaredFields();
-                for (Field field : fields) 
-                {
-                    MyLogger.logger.log(Level.INFO, "Printing fields");
-                    System.out.println(field.getName());   
-                }
-                out.writeObject(fields);
-                
-                MyLogger.logger.log(Level.INFO, "Object writed");
-                out.close();
-                file.close();
-                
-                System.out.println("Object has been serialized");
-    
-            }  
-            catch(IOException ex)
+            MyLogger.logger.log(Level.INFO, "File opened");
+            // Method for serialization of object
+            // DataMenager.prepareData(myShape);
+
+            out.writeObject(objectsArray);
+            
+            MyLogger.logger.log(Level.INFO, "Object writed");
+            out.close();
+            file.close();
+            
+            System.out.println("Object has been serialized");
+        }  
+        catch(IOException ex)
+        {
+            System.out.println("IOException is caught");
+            System.out.println(ex.getMessage());
+        }
+
+
+    }
+
+    public static ArrayList<HashMap> deserializeData(String fileName)
+    {
+        ArrayList<HashMap> objectsArray = null;
+        try
+        {  
+            // Reading the object from a file
+            FileInputStream file = new FileInputStream(fileName);
+            ObjectInputStream in = new ObjectInputStream(file);
+             
+            // Method for deserialization of object
+            objectsArray = (ArrayList)in.readObject();
+             
+            in.close();
+            file.close();
+             
+            System.out.println("Object has been deserialized ");
+            for (HashMap<String, String> shapeProperties : objectsArray) 
             {
-                System.out.println("IOException is caught");
-                System.out.println(ex.getMessage());
+                for (String key: shapeProperties.keySet()) 
+                {
+                    System.out.println(shapeProperties.get(key));
+                }   
             }
         }
+         
+        catch(IOException ex)
+        {
+            System.out.println("IOException is caught");
+        }
+         
+        catch(ClassNotFoundException ex)
+        {
+            System.out.println("ClassNotFoundException is caught");
+        }
+
+        return objectsArray;
     }
 }

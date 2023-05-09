@@ -7,14 +7,17 @@ public class MyPolygonBuilder extends MyShapeBuilder
     @Override
     public MyShape buildMyShape(ArrayList<Double> pointsX, ArrayList<Double> pointsY) 
     {
-        if (MyPointer.getSize() != 6) // chuj wie czy działa, musze iść
+        if (pointsX.size()  != 6) // chuj wie czy działa, musze iść
         {
             return null;
         }
 
         double[] points = preparePoints(pointsX, pointsY);
         MyPolygon myPolygon = new MyPolygon(points);
-        myPolygon.setStartingPoints(pointsX, pointsY);
+
+        ArrayList<Double> startingPointsX = new ArrayList<Double>(pointsX);
+        ArrayList<Double> startingPointsY = new ArrayList<Double>(pointsY);
+        myPolygon.setStartingPoints(startingPointsX, startingPointsY);
 
         return myPolygon;
     }

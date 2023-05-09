@@ -66,10 +66,24 @@ public class App extends Application
         shape.getShape().setDisable(true);
         shapes.add(shape);
         // pane.getChildren().remove(shapes);
-        appController.serialize(shapes);
 
         pane.getChildren().add(shape.getShape());
         MyPointer.clearPoints();
+    }
+
+    public static void loadShapes(ArrayList<HashMap> shapesProperties, Pane pane)
+    {
+        shapes.clear();
+        pane.getChildren().clear();
+        
+        for (HashMap shapeProperties : shapesProperties) 
+        {
+            MyLogger.logger.log(Level.INFO, "Start loading");
+            MyShape myShape = myShapeBuildersMap.get(shapeProperties.get("name")).loadMyShape(shapeProperties);
+            MyShapeController.setEventHandlers(myShape);
+            pane.getChildren().add(myShape.getShape());
+            shapes.add(myShape);
+        }
     }
 
     public static void enableEdit()
@@ -88,5 +102,10 @@ public class App extends Application
     public static void setSelectedOption(String option)
     {
         selectedOption = option;
+    }
+
+    public static ArrayList<MyShape> getShapes()
+    {
+        return shapes;
     }
 }

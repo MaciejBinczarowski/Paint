@@ -33,33 +33,25 @@
 -->
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DialogPane?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane fx:id="backgroundPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#onClickPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
+<Pane fx:id="backgroundPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
    <children>
       <MenuBar fx:id="menuBar" layoutY="-3.0" prefHeight="28.0" prefWidth="600.0">
          <menus>
             <Menu mnemonicParsing="false" text="File">
                <items>
-                  <MenuItem mnemonicParsing="false" text="New" />
-                  <MenuItem mnemonicParsing="false" text="Open…" />
-                  <Menu mnemonicParsing="false" text="Open Recent" />
-                  <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem mnemonicParsing="false" text="Close" />
-                  <MenuItem mnemonicParsing="false" text="Save" />
+                  <MenuItem mnemonicParsing="false" onAction="#onClickLoad" text="Load" />
+                  <MenuItem fx:id="saveButton" mnemonicParsing="false" onAction="#onClickSave" text="Save" />
                   <MenuItem mnemonicParsing="false" text="Save As…" />
-                  <MenuItem mnemonicParsing="false" text="Revert" />
-                  <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem mnemonicParsing="false" text="Preferences…" />
-                  <SeparatorMenuItem mnemonicParsing="false" />
-                  <MenuItem mnemonicParsing="false" text="Quit" />
                </items>
             </Menu>
+            <Menu mnemonicParsing="false" onAction="#onClickInfo" text="Info" />
          </menus>
       </MenuBar>
       <HBox fx:id="buttonPane" alignment="CENTER" layoutX="-3.0" layoutY="25.0" prefHeight="28.0" prefWidth="607.0" style="-fx-background-color: #D3D3D3;">
@@ -73,6 +65,9 @@
             <Button fx:id="editButton" focusTraversable="false" mnemonicParsing="false" onAction="#onClickEditButton" prefHeight="27.0" prefWidth="81.0" text="Edit" />
          </children>
       </HBox>
-      <Pane fx:id="drawningPane" layoutX="-2.0" layoutY="53.0" prefHeight="349.0" prefWidth="607.0" />
+      <Pane fx:id="drawingPane" layoutX="-2.0" layoutY="53.0" onMouseClicked="#onClickDrawingPane" prefHeight="351.0" prefWidth="607.0">
+         <children>
+            <DialogPane layoutX="91.0" layoutY="-35.0" prefHeight="250.0" prefWidth="360.0" />
+         </children></Pane>
    </children>
 </Pane>

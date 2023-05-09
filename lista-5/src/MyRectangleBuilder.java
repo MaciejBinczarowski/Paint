@@ -6,7 +6,7 @@ public class MyRectangleBuilder extends MyShapeBuilder
     @Override
     public MyShape buildMyShape(ArrayList<Double> pointsX, ArrayList<Double> pointsY) 
     {
-        if (MyPointer.getSize() != 2)
+        if (pointsX.size() != 2)
         {
             return null;
         }
@@ -39,7 +39,10 @@ public class MyRectangleBuilder extends MyShapeBuilder
         }
 
         MyRectangle myRectangle = new MyRectangle(upperLeftX, upperLeftY, width, height);
-        myRectangle.setStartingPoints(pointsX, pointsY);
+
+        ArrayList<Double> startingPointsX = new ArrayList<Double>(pointsX);
+        ArrayList<Double> startingPointsY = new ArrayList<Double>(pointsY);
+        myRectangle.setStartingPoints(startingPointsX, startingPointsY);
 
         return myRectangle;
     }

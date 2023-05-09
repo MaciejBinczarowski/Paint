@@ -10,7 +10,7 @@ public class MyCircle extends MyShape
 
     public MyCircle(double radius, double centerX, double centerY)
     {
-        super(new Circle(centerX, centerY, radius), "Circle");
+        super(new Circle(centerX, centerY, radius), "circle");
         this.radius = radius;
         this.centerX = centerX;
         this.centerY = centerY;
@@ -21,8 +21,9 @@ public class MyCircle extends MyShape
     public void move(double x, double y) 
     {
         MyLogger.logger.log(Level.INFO, "Circle moved");
-        shape.setLayoutX(x - shape.getLayoutBounds().getMinX() - 50);
-        shape.setLayoutY(y - shape.getLayoutBounds().getMinY() - 50);
+        MyLogger.logger.log(Level.INFO, shape.getScaleX() + " " + shape.getScaleY());
+        shape.setLayoutX(x - 2 * radius * shape.getScaleX());
+        shape.setLayoutY(y - 2 * radius * shape.getScaleY());
     }
 
 }

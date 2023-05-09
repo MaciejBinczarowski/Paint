@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.logging.Level;
 
 import javafx.event.Event;
@@ -8,6 +9,7 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -37,7 +39,10 @@ public class Controller
     private HBox buttonPane;
 
     @FXML
-    private Pane drawningPane;
+    private Pane drawingPane;
+
+    @FXML
+    private MenuItem saveButton;
     
     @FXML
     private void onClickCircleButton(Event e)
@@ -78,7 +83,7 @@ public class Controller
     }
 
     @FXML
-    private void onClickPane(MouseEvent e)
+    private void onClickDrawingPane(MouseEvent e)
     {
         if (App.getSelectedOption() == null || App.getSelectedOption().equals("edit"))
         {
@@ -93,22 +98,38 @@ public class Controller
 
         MyPointer.addPoint(e.getX(), e.getY());
         // backgroundPane.getChildren().add(new Circle(e.getX(), e.getY(), 2)); // jak starczy czasu to sie tym zajmij
-        App.createShapeFromPoints(drawningPane);
+        App.createShapeFromPoints(drawingPane);
     }
 
-    public static void serialize(ArrayList<MyShape> shapes)
+    @FXML
+    private void onClickSave(Event e)
     {
-        DataSerializer.serializeData(shapes);
+        DataSerializer.serializeData(App.getShapes());
+    }
+
+    @FXML
+    private void onClickLoad(Event e)
+    {
+        ArrayList<HashMap> shapesProperties = DataSerializer.deserializeData("file.ser");
+        App.loadShapes(shapesProperties, drawingPane);
+    }
+
+    @FXML
+    private void onClickInfo(Event e)
+    {
+
     }
 
     public void setProperties()
     {
         menuBar.prefWidthProperty().bind(backgroundPane.widthProperty());
-        Rectangle clip = new Rectangle(0, 0, backgroundPane.getPrefWidth() + 5, backgroundPane.getPrefHeight());
+        Rectangle clip = new Rectangle(0, 0, backgroundPane.getPrefWidth(), backgroundPane.getPrefHeight());
+        drawingPane.prefWidthProperty().bind(backgroundPane.widthProperty());
+        drawingPane.prefHeightProperty().bind(backgroundPane.heightProperty());
         clip.widthProperty().bind(backgroundPane.widthProperty());
         clip.heightProperty().bind(backgroundPane.heightProperty());
 
-        drawningPane.setClip(clip);
+        drawingPane.setClip(clip);
         MyLogger.logger.log(Level.INFO, "Created clip");
         
 

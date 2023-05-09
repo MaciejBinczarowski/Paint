@@ -5,7 +5,7 @@ public class MyCircleBuilder extends MyShapeBuilder
     @Override
     public MyShape buildMyShape(ArrayList<Double> pointsX, ArrayList<Double> pointsY) 
     {
-        if (MyPointer.getSize() != 2)
+        if (pointsX.size()  != 2)
         {
             return null;
         }
@@ -17,7 +17,10 @@ public class MyCircleBuilder extends MyShapeBuilder
         double radius = calculateRadius(x1, x2, y1, y2);
 
         MyCircle myCircle = new MyCircle(radius, x1, y1);
-        myCircle.setStartingPoints(pointsX, pointsY);
+
+        ArrayList<Double> startingPointsX = new ArrayList<Double>(pointsX);
+        ArrayList<Double> startingPointsY = new ArrayList<Double>(pointsY);
+        myCircle.setStartingPoints(startingPointsX, startingPointsY);
 
         return myCircle;
     }
