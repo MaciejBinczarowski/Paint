@@ -1,0 +1,26 @@
+May 10, 2023 12:27:40 AM Controller setProperties
+INFO: Created clip
+May 10, 2023 12:27:42 AM Controller onClickPolygonButton
+INFO: Polygon button pressed
+May 10, 2023 12:27:42 AM MyPointer clearPoints
+INFO: Removing 0 points
+May 10, 2023 12:27:44 AM Controller onClickCircleButton
+INFO: Circle button pressed
+May 10, 2023 12:27:44 AM MyPointer clearPoints
+INFO: Removing 0 points
+May 10, 2023 12:27:45 AM MyPointer addPoint
+INFO: Added (190.0, 135.0) point
+May 10, 2023 12:27:45 AM MyPointer addPoint
+INFO: Added (250.0, 156.0) point
+May 10, 2023 12:27:45 AM MyCircle <init>
+INFO: Circle with radius = 63.56886030125127 and center in (190.0, 135.0)
+May 10, 2023 12:27:45 AM MyPointer clearPoints
+INFO: Removing 2 points
+May 10, 2023 12:27:46 AM Controller onClickEditButton
+INFO: Edit button pressed
+May 10, 2023 12:27:46 AM MyPointer clearPoints
+INFO: Removing 0 points
+May 10, 2023 12:27:49 AM MyShapeController lambda$2
+INFO: Trying to get into rotate mode
+May 10, 2023 12:27:51 AM MyShapeController lambda$2
+INFO: Trying to get into rotate mode

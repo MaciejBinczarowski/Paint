@@ -4,24 +4,17 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
-
 import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonBar;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 
 public class Controller 
@@ -62,7 +55,7 @@ public class Controller
         
         MyLogger.logger.log(Level.INFO, "Circle button pressed");
         MyPointer.clearPoints();
-        App.setSelectedOption("circle");
+        MyShapeController.setSelectedOption("circle");
     }
 
     @FXML
@@ -70,7 +63,7 @@ public class Controller
     {
         MyLogger.logger.log(Level.INFO, "Rectangle button pressed");
         MyPointer.clearPoints();
-        App.setSelectedOption("rectangle");
+        MyShapeController.setSelectedOption("rectangle");
     }
 
     @FXML
@@ -78,7 +71,7 @@ public class Controller
     {
         MyLogger.logger.log(Level.INFO, "Polygon button pressed");
         MyPointer.clearPoints();
-        App.setSelectedOption("polygon");
+        MyShapeController.setSelectedOption("polygon");
         
     }
 
@@ -87,40 +80,40 @@ public class Controller
     {
         MyLogger.logger.log(Level.INFO, "Edit button pressed");
         MyPointer.clearPoints();
-        App.setSelectedOption("edit");
-        App.enableEdit();
+        MyShapeController.setSelectedOption("edit");
+        MyShapeController.enableEdit();
     }
 
     @FXML
     private void onClickDrawingPane(MouseEvent e)
     {
-        if (App.getSelectedOption() == null || App.getSelectedOption().equals("edit"))
+        if (MyShapeController.getSelectedOption() == null || MyShapeController.getSelectedOption().equals("edit"))
         {
             MyLogger.logger.log(Level.INFO, "Nothing selected!");
             return;
         }
 
-        if (App.getSelectedOption().equals("edit"))
+        if (MyShapeController.getSelectedOption().equals("edit"))
         {
             return;
         }
 
         MyPointer.addPoint(e.getX(), e.getY());
         // backgroundPane.getChildren().add(new Circle(e.getX(), e.getY(), 2)); // jak starczy czasu to sie tym zajmij
-        App.createShapeFromPoints(drawingPane);
+        MyShapeController.createShapeFromPoints(drawingPane);
     }
 
     @FXML
     private void onClickSave(Event e)
     {
-        DataSerializer.serializeData(App.getShapes());
+        DataSerializer.serializeData(MyShapeController.getShapes());
     }
 
     @FXML
     private void onClickLoad(Event e)
     {
         ArrayList<HashMap> shapesProperties = DataSerializer.deserializeData("file.ser");
-        App.loadShapes(shapesProperties, drawingPane);
+        MyShapeController.loadShapes(shapesProperties, drawingPane);
     }
 
     @FXML

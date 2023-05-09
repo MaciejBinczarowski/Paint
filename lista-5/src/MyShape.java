@@ -1,9 +1,6 @@
 import java.util.ArrayList;
-import java.util.logging.Level;
-
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Shape;
-import javafx.scene.transform.Rotate;
 
 public abstract class MyShape implements IShapeAction, java.io.Serializable
 {
@@ -16,8 +13,6 @@ public abstract class MyShape implements IShapeAction, java.io.Serializable
     {
         this.shape = shape;
         this.name = name;
-        // no comment
-        //Definitly change it idioto jebany
     }
 
     @Override
@@ -48,12 +43,6 @@ public abstract class MyShape implements IShapeAction, java.io.Serializable
     {
         return name;
     }
-
-    //Weż ty przemyśl swoje zachowanie i zmień to
-    // zmądrzałem, przeciąż metody w MyShapeBuilder
-    //200 IQ
-    //
-    // w sumie to nie wiem co miałem na myśli xd
 
     public void setStartingPoints(ArrayList<Double> startingPointsX, ArrayList<Double> startingPointsY)
     {

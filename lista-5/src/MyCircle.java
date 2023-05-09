@@ -22,8 +22,8 @@ public class MyCircle extends MyShape
     {
         MyLogger.logger.log(Level.INFO, "Circle moved");
         MyLogger.logger.log(Level.INFO, shape.getScaleX() + " " + shape.getScaleY());
-        shape.setLayoutX(x - 2 * radius * shape.getScaleX());
-        shape.setLayoutY(y - 2 * radius * shape.getScaleY());
+        shape.setLayoutX(x - shape.getLayoutBounds().getMinX() - 50);
+        shape.setLayoutY(y - shape.getLayoutBounds().getMinY() - 50);
     }
 
 }
