@@ -1,3 +1,6 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
@@ -6,10 +9,13 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
+import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -43,6 +49,9 @@ public class Controller
 
     @FXML
     private MenuItem saveButton;
+
+    @FXML
+    private Menu infoButton;
     
     @FXML
     private void onClickCircleButton(Event e)
@@ -117,7 +126,34 @@ public class Controller
     @FXML
     private void onClickInfo(Event e)
     {
+        String infoText = "";
 
+        try
+        {
+            FileReader fileReader = new FileReader("src/info.txt");
+            System.out.println("jestem po filereader");
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                infoText += line + "\n";
+            }
+
+            bufferedReader.close();
+        }
+        catch (IOException exception)
+        {
+            MyLogger.logger.log(Level.INFO, "File doesnt exist!" + exception.getMessage());
+        }            
+        
+        MyLogger.logger.log(Level.INFO, "Info button pressed");
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("Information Dialog");
+        alert.setHeaderText(null);
+        System.out.println(infoText);
+        alert.setContentText(infoText);
+
+        alert.show();
     }
 
     public void setProperties()

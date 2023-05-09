@@ -16,7 +16,7 @@ public abstract class MyShape implements IShapeAction, java.io.Serializable
     {
         this.shape = shape;
         this.name = name;
-
+        // no comment
         //Definitly change it idioto jebany
     }
 

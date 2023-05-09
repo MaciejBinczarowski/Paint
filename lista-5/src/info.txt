@@ -1,0 +1,11 @@
+Nazwa programu: Paint a co
+Autor: Maciej Binczarowski
+
+Obsługa programu: Aplikacja Paint a co pozwala użytkownikowi na
+tworzenie figur geometrycznych wybierając jej rodzaj z pomocą przycisku
+na górze aplikacji. Aktualnie dostępne figury to koło, prostokąt i 
+szściokąt (polygon). Aby stworzyć figurę należy zaznaczyć myszką punkty,
+będące wierzchołkami wielokątów lub w przypadku koła - jego środek
+i miejsce, w którym kończy się promień. Po kliknięciu przycisku edit
+użytkownik może przesuwać, zmniejszać i zwiększać, obracać stworzone figury,
+a pod prawym przyciskiem myszy można zmienić jej kolor. Aplikacja będzie rozwijana.
