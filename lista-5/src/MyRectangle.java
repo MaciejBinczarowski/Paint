@@ -9,7 +9,7 @@ public class MyRectangle extends MyShape
     private double width;
     private double height;
 
-    // Constructor that create rectangle with required cordinates and measurement and give it to parent abstract class MyShape
+    // Constructor that creates rectangle with required cordinates and measurements and give it to parent abstract class MyShape
     MyRectangle(double upperLeftX, double upperLeftY, double width, double height)
     {
         super(new Rectangle(upperLeftX, upperLeftY, width, height), "rectangle");

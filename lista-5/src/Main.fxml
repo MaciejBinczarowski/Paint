@@ -47,7 +47,7 @@
                <items>
                   <MenuItem mnemonicParsing="false" onAction="#onClickLoad" text="Load" />
                   <MenuItem fx:id="saveButton" mnemonicParsing="false" onAction="#onClickSave" text="Save" />
-                  <MenuItem mnemonicParsing="false" text="Save As…" />
+                  <MenuItem mnemonicParsing="false" onAction="#onClickSaveAs" text="Save As…" />
                </items>
             </Menu>
             <Menu fx:id="infoButton" mnemonicParsing="false" onMenuValidation="#onClickInfo" text="Info">

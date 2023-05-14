@@ -4,16 +4,16 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 
 public class DataSerializer
 {
-    public static void serializeData(ArrayList<MyShape> shapes)
+    private static String currentPath = null;
+
+    public static void serializeData(ArrayList<MyShape> shapes, String path)
     {  
-        String filename = "file.ser";
         ArrayList<HashMap> objectsArray = new ArrayList<HashMap>(); 
          
         // Serialization
@@ -26,7 +26,7 @@ public class DataSerializer
         {  
             MyLogger.logger.log(Level.INFO, "Trying to open file");
             //Saving of object in a file
-            FileOutputStream file = new FileOutputStream(new File(filename));
+            FileOutputStream file = new FileOutputStream(new File(path));
             ObjectOutputStream out = new ObjectOutputStream(file);
             
             MyLogger.logger.log(Level.INFO, "File opened");
@@ -50,14 +50,15 @@ public class DataSerializer
 
     }
 
-    public static ArrayList<HashMap> deserializeData(String fileName)
+    public static ArrayList<HashMap> deserializeData(String path)
     {
         ArrayList<HashMap> objectsArray = null;
         try
         {  
             // Reading the object from a file
-            FileInputStream file = new FileInputStream(fileName);
+            FileInputStream file = new FileInputStream(path);
             ObjectInputStream in = new ObjectInputStream(file);
+            currentPath = path;
              
             // Method for deserialization of object
             objectsArray = (ArrayList)in.readObject();
@@ -86,5 +87,10 @@ public class DataSerializer
         }
 
         return objectsArray;
+    }
+
+    public static String getCurrentPath() 
+    {
+        return currentPath;
     }
 }

@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Shape;
 
-public abstract class MyShape implements IShapeAction, java.io.Serializable
+public abstract class MyShape implements IShapeAction
 {
     final protected Shape shape;
     final protected String name;

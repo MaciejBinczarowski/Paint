@@ -1,4 +1,5 @@
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -16,6 +17,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.FileChooser;
+import javafx.stage.Window;
 
 public class Controller 
 {
@@ -106,13 +109,46 @@ public class Controller
     @FXML
     private void onClickSave(Event e)
     {
-        DataSerializer.serializeData(MyShapeController.getShapes());
+        if (DataSerializer.getCurrentPath() == null)
+        {
+            onClickSaveAs(e);
+            return;
+        }
+
+        DataSerializer.serializeData(MyShapeController.getShapes(), DataSerializer.getCurrentPath());
+        MyLogger.logger.log(Level.INFO, "File saved in: " + DataSerializer.getCurrentPath());
+    }
+
+    @FXML
+    private void onClickSaveAs(Event e)
+    {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open Resource File");
+        File file = fileChooser.showSaveDialog(backgroundPane.getScene().getWindow());
+        if (file == null)
+        {
+            return;
+        }
+
+        String path = file.toString();
+        MyLogger.logger.log(Level.INFO, "Choosen file's path: " + path);
+        DataSerializer.serializeData(MyShapeController.getShapes(), path);
     }
 
     @FXML
     private void onClickLoad(Event e)
     {
-        ArrayList<HashMap> shapesProperties = DataSerializer.deserializeData("file.ser");
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Open Resource File");
+        File file = fileChooser.showOpenDialog(backgroundPane.getScene().getWindow());
+        if (file == null)
+        {
+            return;
+        }
+
+        String path = file.toString();
+        MyLogger.logger.log(Level.INFO, "Choosen file's path: " + path);
+        ArrayList<HashMap> shapesProperties = DataSerializer.deserializeData(path);
         MyShapeController.loadShapes(shapesProperties, drawingPane);
     }
 
@@ -124,7 +160,6 @@ public class Controller
         try
         {
             FileReader fileReader = new FileReader("src/info.txt");
-            System.out.println("jestem po filereader");
             BufferedReader bufferedReader = new BufferedReader(fileReader);
 
             String line;
