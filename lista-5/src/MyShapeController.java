@@ -37,11 +37,12 @@ public class MyShapeController
      * @param myShape - MyShape class object, especially myCircle, myRectangle, myPolygon, myShape is
      *                  a parent abstract class
      */
-    public static void setEventHandlers(MyShape myShape)
+    public static void setEventHandlers(MyShape myShape, Pane drawingPane)
     {
         ColorPicker colorPicker = new ColorPicker(Color.BLACK);
-        MenuItem menuItem = new MenuItem("Change color", colorPicker);
-        ContextMenu contextMenu = new ContextMenu(menuItem);
+        MenuItem changeColorOption = new MenuItem("Change color", colorPicker);
+        MenuItem deleteOption = new MenuItem("Delete");
+        ContextMenu contextMenu = new ContextMenu(deleteOption, changeColorOption);
 
         // sets shape active after click
         // shows contextMenu on secondary button by the way
@@ -116,9 +117,16 @@ public class MyShapeController
         });
 
         // changes color of shape relying on ColorPicker
-        menuItem.setOnAction(event ->
+        changeColorOption.setOnAction(event ->
         {
             myShape.changeColor(colorPicker.getValue());
+        });
+
+        deleteOption.setOnAction(event ->
+        {
+            MyLogger.logger.log(Level.INFO, "Deleting shape");
+            drawingPane.getChildren().remove(myShape.getShape());
+            shapes.remove(myShape);
         });
 
         // gives focus on shape under the mouse
@@ -150,12 +158,13 @@ public class MyShapeController
             return;
         }
 
-        MyShapeController.setEventHandlers(shape);
+        MyShapeController.setEventHandlers(shape, drawningPane);
         shape.getShape().setDisable(true);
         shapes.add(shape);
 
         drawningPane.getChildren().add(shape.getShape());
         MyPointer.clearPoints();
+        MyPointer.clearVisualPoints(drawningPane);
     }
 
     /**
@@ -177,7 +186,7 @@ public class MyShapeController
 
             // whole data unpacking is done in MyShapeBuilder
             MyShape myShape = myShapeBuildersMap.get(shapeProperties.get("name")).loadMyShape(shapeProperties);
-            MyShapeController.setEventHandlers(myShape);
+            MyShapeController.setEventHandlers(myShape, drawningPane);
             myShape.getShape().setDisable(true);
             drawningPane.getChildren().add(myShape.getShape());
             shapes.add(myShape);

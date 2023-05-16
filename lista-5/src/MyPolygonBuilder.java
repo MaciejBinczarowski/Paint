@@ -3,7 +3,6 @@ import java.util.logging.Level;
 
 public class MyPolygonBuilder extends MyShapeBuilder
 {
-
     @Override
     public MyShape buildMyShape(ArrayList<Double> pointsX, ArrayList<Double> pointsY) 
     {

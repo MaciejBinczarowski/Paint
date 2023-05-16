@@ -16,6 +16,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.FileChooser;
 import javafx.stage.Window;
@@ -58,6 +59,7 @@ public class Controller
         
         MyLogger.logger.log(Level.INFO, "Circle button pressed");
         MyPointer.clearPoints();
+        MyPointer.clearVisualPoints(drawingPane);
         MyShapeController.setSelectedOption("circle");
     }
 
@@ -66,6 +68,7 @@ public class Controller
     {
         MyLogger.logger.log(Level.INFO, "Rectangle button pressed");
         MyPointer.clearPoints();
+        MyPointer.clearVisualPoints(drawingPane);
         MyShapeController.setSelectedOption("rectangle");
     }
 
@@ -74,6 +77,7 @@ public class Controller
     {
         MyLogger.logger.log(Level.INFO, "Polygon button pressed");
         MyPointer.clearPoints();
+        MyPointer.clearVisualPoints(drawingPane);
         MyShapeController.setSelectedOption("polygon");
         
     }
@@ -83,6 +87,7 @@ public class Controller
     {
         MyLogger.logger.log(Level.INFO, "Edit button pressed");
         MyPointer.clearPoints();
+        MyPointer.clearVisualPoints(drawingPane);
         MyShapeController.setSelectedOption("edit");
         MyShapeController.enableEdit();
     }
@@ -102,7 +107,8 @@ public class Controller
         }
 
         MyPointer.addPoint(e.getX(), e.getY());
-        // backgroundPane.getChildren().add(new Circle(e.getX(), e.getY(), 2)); // jak starczy czasu to sie tym zajmij
+        MyPointer.addVisualPoint(e.getX(), e.getY(), drawingPane);
+        // drawingPane.getChildren().add(visualPoint); // jak starczy czasu to sie tym zajmij //starczyło :)
         MyShapeController.createShapeFromPoints(drawingPane);
     }
 

@@ -1,10 +1,6 @@
 import java.util.logging.Level;
 import java.util.ArrayList;
 import java.util.HashMap;
-
-import javafx.css.converter.ColorConverter;
-import javafx.scene.control.ColorPicker;
-import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 
 public abstract class MyShapeBuilder 

@@ -1,10 +1,14 @@
 import java.util.ArrayList;
 import java.util.logging.Level;
 
+import javafx.scene.layout.Pane;
+import javafx.scene.shape.Circle;
+
 public class MyPointer 
 {
     private static ArrayList<Double> pointsX = new ArrayList<Double>();
     private static ArrayList<Double> pointsY = new ArrayList<Double>();
+    private static ArrayList<MyVisualPoint> visualPoints = new ArrayList<MyVisualPoint>();
 
     public static void addPoint(double x, double y)
     {
@@ -35,5 +39,22 @@ public class MyPointer
         int size = pointsX.size();
         MyLogger.logger.log(Level.INFO, "Size is " + size);
         return size;
+    }
+
+    public static void addVisualPoint(double x, double y, Pane pane)
+    {
+        MyVisualPoint visualPoint = new MyVisualPoint(x, y);
+        visualPoints.add(visualPoint);
+        pane.getChildren().addAll(visualPoint);
+        MyLogger.logger.log(Level.INFO, "Visual point added");
+    }
+
+    public static void clearVisualPoints(Pane pane)
+    {
+        for (Circle visualPoint : visualPoints) 
+        {
+            pane.getChildren().remove(visualPoint);
+        }
+        visualPoints.clear();
     }
 }
